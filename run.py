@@ -28,8 +28,7 @@ def save_output(tensor, path):
     img = tensor.squeeze().detach().cpu().numpy()
     img = np.clip(img, 0.0, 1.0)
 
-    plt.imsave(path, img, cmap="gray", vmin=0.0, vmax=1.0)
-
+    np.save(path, img)
 
 def main():
     parser = argparse.ArgumentParser(
@@ -91,7 +90,7 @@ def main():
             stem = os.path.splitext(filename)[0]
             output_path = os.path.join(
                 args.output_dir,
-                stem + ".png"
+                stem + ".npy"
             )
             save_output(pred, output_path)
 
