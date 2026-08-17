@@ -1,7 +1,5 @@
 # Image Restoration / Super-Resolution
 
-This repository contains the image-restoration model implemented in the supplied
-`semicon-lesgo2.ipynb` notebook.
 
 ## Model
 
@@ -17,7 +15,7 @@ The final notebook architecture uses:
 - A final PixelShuffle(2) and residual connection to bicubic upsampling.
 - Output is transformed back using the saved percentile range and clipped to `[0,1]`.
 
-The active training loss in the supplied notebook is:
+The active training loss is:
 
 `Charbonnier pixel loss + Sobel-gradient L1 edge loss`
 
@@ -53,7 +51,7 @@ For PyTorch, use the build appropriate for the reviewer's CUDA/CPU environment.
 
 ## Data format
 
-The supplied notebook loads images from directories containing `.npy` files.
+The model loads images from directories containing `.npy` files.
 
 Training expects:
 
@@ -84,27 +82,21 @@ data/
 
 ## Inference
 
-Place the trained `best_model.pt` next to `evaluate.py`.
+Place the trained `best_model.pt` next to `run.py`.
 
-Run without TTA:
-
-```bash
-python evaluate.py path/to/noisy-test path/to/restored_outputs --weights best_model.pt
-```
-
-Run using the flip-based TTA implemented in the notebook:
+Run :
 
 ```bash
-python evaluate.py path/to/noisy-test path/to/restored_outputs --weights best_model.pt --tta
+python run.py path/to/noisy-test path/to/restored_outputs --weights best_model.pt
 ```
+
 
 The script:
 
 1. Loads every `.npy` file in the supplied test directory.
 2. Loads the trained `state_dict`.
 3. Runs the restoration model.
-4. Optionally applies the notebook's horizontal/vertical flip TTA.
-5. Writes each restored image as a grayscale PNG into the requested output directory.
+4. Writes each restored image as a grayscale .npy into the requested output directory.
 
 No source-code edits are required.
 
@@ -123,15 +115,5 @@ python train.py \
     --channels 32
 ```
 
-The script performs the same seeded 90/10 train/validation split used in the
+The script performs the same seeded 80/20 train/validation split used in the original
 notebook and saves the checkpoint with the best validation PSNR.
-
-## Trained weights and test outputs
-
-The actual trained checkpoint and the actual restored test images are
-submission artifacts and must be copied into this repository (or provided
-through the submission platform if the checkpoint is too large).
-
-This package does **not** fabricate those artifacts: the supplied notebook
-references a previously trained checkpoint, but the checkpoint file itself and
-the test `.npy` files are not included with the uploaded notebook.
