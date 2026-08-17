@@ -33,7 +33,7 @@ The best checkpoint is selected using validation PSNR.
 ├── train.py
 ├── run.py
 ├── requirements.txt
-├── model_weights/best_model.pt                 
+├── best_model.pt                 
 ├── restored_test_outputs/         
 ```
 
@@ -87,7 +87,7 @@ Place the trained `best_model.pt` next to `run.py`.
 Run :
 
 ```bash
-python run.py path/to/noisy-test path/to/restored_outputs --weights best_model.pt
+python run.py path/to/noisy-test path/to/restored_outputs
 ```
 
 
