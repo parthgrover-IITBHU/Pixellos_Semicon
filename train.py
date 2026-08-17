@@ -25,7 +25,7 @@ def load_npy_dir(directory):
     ])
 
 
-def train_val_split(x, y, val_fraction=0.1, seed=42):
+def train_val_split(x, y, val_fraction=0.2, seed=42):
     assert len(x) == len(y)
     n = len(x)
     rng = np.random.RandomState(seed)
