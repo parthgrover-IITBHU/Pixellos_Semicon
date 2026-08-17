@@ -87,7 +87,7 @@ def main():
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--channels", type=int, default=32)
-    parser.add_argument("--val-fraction", type=float, default=0.1)
+    parser.add_argument("--val-fraction", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
