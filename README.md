@@ -32,13 +32,11 @@ The best checkpoint is selected using validation PSNR.
 .
 ├── README.md
 ├── model.py
-├── losses.py
 ├── train.py
-├── evaluate.py
+├── run.py
 ├── requirements.txt
-├── best_model.pt                  # add the actual trained checkpoint here
-├── restored_test_outputs/         # add the actual restored test outputs here
-└── semicon-lesgo2.ipynb           # original notebook
+├── model_weights/best_model.pt                 
+├── restored_test_outputs/         
 ```
 
 ## Environment
